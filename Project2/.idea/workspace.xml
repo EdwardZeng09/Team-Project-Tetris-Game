@@ -4,47 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56a7641d-91bd-47ba-a1a0-fdd51996c1b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_sdk_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/libraries/javafx_jmods_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/libraries/javafx_sdk_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TetrisApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TetrisTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boards/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boards/2022.11.19.15.51.34.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boards/2022.11.19.15.58.55.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boards/2022.11.19.16.02.56.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boards/2022.11.19.16.05.20.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boards/2022.11.19.16.18.45.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/boards/abc.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/AutoPilot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/BlackDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/BombDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/DestroyDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Piece.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TetrisBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TetrisModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TetrisPiece.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TetrisPieceDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TetrisPilot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TetrisPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/LoadView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/SaveView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/TetrisView.java" afterDir="false" />
-    </list>
+    <list default="true" id="56a7641d-91bd-47ba-a1a0-fdd51996c1b2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,13 +13,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -83,13 +43,42 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "openjdk-18",
-    "last_opened_file_path": "E:/UTM/Year2/CSC207/heruiqi2/Lab08",
+    "last_opened_file_path": "E:/UTM/javafx-sdk-19/lib/javafx.graphics.jar",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RunManager" selected="JUnit.TetrisTests.testClearRows2">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TetrisApp" />
+      <module name="Project2" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;E:\UTM\javafx-sdk-19\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TetrisTests.testClearRows2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TetrisTests" />
+      <option name="METHOD_NAME" value="testClearRows2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="JUnit.TetrisTests.testClearRows2" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TetrisTests.testClearRows2" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
