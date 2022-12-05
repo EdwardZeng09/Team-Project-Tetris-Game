@@ -1,6 +1,7 @@
 package views;
 
 import model.TetrisModel;
+import model.Achievement;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.util.HashMap;
 
 
 /**
@@ -37,6 +39,8 @@ public class TetrisView {
     Button startButton, stopButton, loadButton, saveButton, newButton; //buttons for functions
     Label scoreLabel = new Label("");
     Label gameModeLabel = new Label("");
+
+    Label AchievementLable = new Label((""));
 
     BorderPane borderPane;
     Canvas canvas;
@@ -107,6 +111,10 @@ public class TetrisView {
         scoreLabel.setFont(new Font(20));
         scoreLabel.setStyle("-fx-text-fill: #e8e6e3");
 
+        AchievementLable.setText("Achievements:");
+        AchievementLable.setFont(new Font(20));
+        AchievementLable.setStyle("-fx-text-fill: #e8e6e3");
+
         //add buttons
         startButton = new Button("Start");
         startButton.setId("Start");
@@ -150,7 +158,7 @@ public class TetrisView {
         vBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.TOP_CENTER);
 
-        VBox scoreBox = new VBox(20, scoreLabel, gameModeLabel, pilotButtonHuman, pilotButtonComputer);
+        VBox scoreBox = new VBox(20, scoreLabel, gameModeLabel, pilotButtonHuman, pilotButtonComputer, AchievementLable);
         scoreBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.TOP_CENTER);
 
@@ -262,6 +270,7 @@ public class TetrisView {
             paintBoard();
             this.model.modelTick(TetrisModel.MoveType.DOWN);
             updateScore();
+            updateAchievements();
         }
     }
 
@@ -271,6 +280,20 @@ public class TetrisView {
     private void updateScore() {
         if (this.paused != true) {
             scoreLabel.setText("Score is: " + model.getScore() + "\nPieces placed:" + model.getCount());
+        }
+    }
+
+    private void updateAchievements() {
+        if (this.paused != true) {
+            StringBuilder sb = new StringBuilder();
+            HashMap<String, Boolean> acs = Achievement.getInstance().getachievents();
+            for(String ac: acs.keySet()){
+                if(acs.get(ac)){
+                    sb.append(ac);
+                    sb.append("\n");
+                }
+            }
+            AchievementLable.setText("Achievements: " + "\n" + sb);
         }
     }
 

@@ -8,11 +8,13 @@ public class Achievement {
 
     private Achievement(){
         HashMap<String, Boolean> hm = new HashMap<>();
+        hm.put("New player", true);
         hm.put("wait strip", false);
         hm.put("The Bomber", false);
         hm.put("Freak of destruction", false);
-        hm.put("hundred point", false);
-        hm.put("thousand point", false);
+        hm.put("ten points", false);
+        hm.put("hundred points", false);
+        hm.put("thousand points", false);
         achievements = hm;
     }
 
