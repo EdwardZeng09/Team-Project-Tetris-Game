@@ -50,8 +50,10 @@
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+
   <component name="RunManager" selected="Application.Unnamed">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+
       <option name="MAIN_CLASS_NAME" value="TetrisApp" />
       <module name="Project2" />
       <option name="VM_PARAMETERS" value="--module-path &quot;E:\UTM\javafx-sdk-19\lib&quot; --add-modules javafx.controls,javafx.fxml" />
@@ -59,6 +61,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="TetrisTests.testClearRows2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Project2" />
       <option name="PACKAGE_NAME" value="" />
@@ -76,6 +79,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TetrisTests.testClearRows2" />
+
       </list>
     </recent_temporary>
   </component>
