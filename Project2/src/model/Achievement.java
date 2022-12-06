@@ -28,7 +28,6 @@ public class Achievement {
 
     public void unlock(String ach){
         if (achievements.containsKey(ach)){
-            System.out.println("yes key");
             achievements.replace(ach, true);
         }
         return;
