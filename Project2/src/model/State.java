@@ -7,6 +7,6 @@ public abstract class State {
         this.context = context;
     }
     public abstract String atone();
-    public abstract String attwo();
-    public abstract String atthree();
+    public abstract String atTwo();
+    public abstract String atThree();
 }

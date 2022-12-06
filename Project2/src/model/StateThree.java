@@ -11,13 +11,13 @@ public class StateThree extends State{
     }
 
     @Override
-    public String attwo() {
+    public String atTwo() {
         context.changeDifficulty(new StateTwo(context));
         return "sealed";
     }
 
     @Override
-    public String atthree() {
+    public String atThree() {
         context.changeDifficulty(new StateThree(context));
         return "Difficulty three";
     }
