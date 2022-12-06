@@ -307,6 +307,10 @@ public class TetrisBoard implements Serializable{
             }
 
             }
+        if (fullrows.size() == 4){
+            Achievement a = Achievement.getInstance();
+            a.unlock("wait strip");
+        }
         return fullrows.size();
     }
 

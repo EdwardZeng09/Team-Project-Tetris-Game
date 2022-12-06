@@ -12,6 +12,10 @@ public class TetrisModel implements Serializable {
     public static final int HEIGHT = 20; //height of the board in blocks
     public static final int BUFFERZONE = 4; //space at the top
 
+    private Boolean never10 = true;
+    private Boolean never100 = true;
+    private Boolean never1000 = true;
+
     protected TetrisBoard board;  // Board data structure
     protected TetrisPiece[] pieces; // Pieces to be places on the board
     protected TetrisPiece currentPiece; //Piece we are currently placing
@@ -116,6 +120,23 @@ public class TetrisModel implements Serializable {
     public void addNewPiece() {
         count++;
         score++;
+        if(score >= 10 && never10){
+            never10 = false;
+            Achievement a = Achievement.getInstance();
+            a.unlock("ten points");
+        }
+
+        if(score >= 100 && never100){
+            never100 = false;
+            Achievement a = Achievement.getInstance();
+            a.unlock("hundred points");
+        }
+
+        if(score >= 1000 && never1000){
+            never1000 = false;
+            Achievement a = Achievement.getInstance();
+            a.unlock("thousand points");
+        }
 
         // commit things the way they are
         board.commit();
@@ -291,6 +312,23 @@ public class TetrisModel implements Serializable {
                     case 3: score += 20;  break;
                     case 4: score += 40;  break;
                     default: score += 50;
+                }
+                if(score >= 10 && never10){
+                    never10 = false;
+                    Achievement a = Achievement.getInstance();
+                    a.unlock("ten points");
+                }
+
+                if(score >= 100 && never100){
+                    never100 = false;
+                    Achievement a = Achievement.getInstance();
+                    a.unlock("hundred points");
+                }
+
+                if(score >= 1000 && never1000){
+                    never1000 = false;
+                    Achievement a = Achievement.getInstance();
+                    a.unlock("thousand points");
                 }
             }
 

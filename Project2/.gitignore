@@ -11,7 +11,7 @@ out/
 *.class
 *.iml
 *.pdf
-*.ser 
+*.ser
 
 ### Eclipse ###
 .apt_generated
