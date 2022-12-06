@@ -1,3 +1,4 @@
+import model.TetrisContext;
 import model.TetrisModel;
 import views.TetrisView;
 
@@ -30,7 +31,7 @@ public class TetrisApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.model = new TetrisModel(); // create a model
-        this.view = new TetrisView(model, primaryStage); //tie the model to the view
+        this.view = new TetrisView(model, primaryStage, new TetrisContext()); //tie the model to the view
         this.model.startGame(); //begin
     }
 

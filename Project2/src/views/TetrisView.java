@@ -1,5 +1,6 @@
 package views;
 
+import model.TetrisContext;
 import model.TetrisModel;
 
 import javafx.animation.KeyFrame;
@@ -20,8 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.io.File;
 
 
 /**
@@ -48,6 +47,7 @@ public class TetrisView {
     int pieceWidth = 20; //width of block on display
     private double width; //height and width of canvas
     private double height;
+    private TetrisContext context;
 
     /**
      * Constructor
@@ -56,16 +56,16 @@ public class TetrisView {
      * @param stage application stage
      */
 
-    public TetrisView(TetrisModel model, Stage stage) {
+    public TetrisView(TetrisModel model, Stage stage, TetrisContext context) {
         this.model = model;
         this.stage = stage;
-        initUI();
+        initUI(context);
     }
 
     /**
      * Initialize interface
      */
-    private void initUI() {
+    private void initUI(TetrisContext context) {
         this.paused = false;
         this.stage.setTitle("CSC207 Tetris");
         this.width = this.model.getWidth()*pieceWidth + 2;
@@ -107,7 +107,30 @@ public class TetrisView {
         scoreLabel.setFont(new Font(20));
         scoreLabel.setStyle("-fx-text-fill: #e8e6e3");
 
+
+        this.context = context;
+
+
+
         //add buttons
+        Button oneButton = new Button("Level One");
+        oneButton.setId("Level One");
+        oneButton.setPrefSize(150, 50);
+        oneButton.setFont(new Font(12));
+        oneButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+
+        Button twoButton = new Button("Level Two");
+        twoButton.setId("Level Two");
+        twoButton.setPrefSize(150, 50);
+        twoButton.setFont(new Font(12));
+        twoButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+
+        Button threeButton = new Button("Level Three");
+        threeButton.setId("Level Three");
+        threeButton.setPrefSize(150, 50);
+        threeButton.setFont(new Font(12));
+        threeButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+
         startButton = new Button("Start");
         startButton.setId("Start");
         startButton.setPrefSize(150, 50);
@@ -138,7 +161,7 @@ public class TetrisView {
         newButton.setFont(new Font(12));
         newButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
-        HBox controls = new HBox(20, saveButton, loadButton, newButton, startButton, stopButton);
+        HBox controls = new HBox(20, saveButton, loadButton, newButton, startButton, stopButton, oneButton, twoButton, threeButton);
         controls.setPadding(new Insets(20, 20, 20, 20));
         controls.setAlignment(Pos.CENTER);
 
@@ -195,6 +218,19 @@ public class TetrisView {
         loadButton.setOnAction(e -> {
             LoadView lv = new LoadView(this);
             borderPane.requestFocus();
+        });
+
+        oneButton.setOnAction(e -> {
+            context.getState().atone();
+            timeline.setRate(0.1);
+        });
+        twoButton.setOnAction(e -> {
+            context.getState().atTwo();
+            timeline.setRate(1);
+        });
+        threeButton.setOnAction(e -> {
+            context.getState().atThree();
+            timeline.setRate(10);
         });
 
         //configure this such that you adjust the speed of the timeline to a value that
