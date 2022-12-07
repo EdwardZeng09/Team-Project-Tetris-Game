@@ -277,41 +277,90 @@ public class TetrisBoard implements Serializable{
      * @return number of rows cleared (useful for scoring)
      */
     public int clearRows() {
-        ArrayList<Integer> fullrows = new ArrayList<>();
-        for (int y = 0; y < height; y++) {
-            int count = 0;
-            for (int x = 0; x < width; x++) {
-                if (tetrisGrid[x][y]) {
-                    count++;
+
+        int clearRowCount = 0;
+
+        while (true) {
+
+            int out = 0;
+
+            for (int i = out; i < this.height; i++) {
+
+                //if filled all across
+                if (this.rowCounts[i] == this.width) {
+
+                    //clear row first
+                    for (int j = 0; j < this.width; j++) {
+
+                        this.tetrisGrid[j][i] = false;
+
+                    }
+
+                    //move
+                    for (int y = i + 1; y < this.height; y++) {
+
+                        for (int x = 0; x < this.width; x++) {
+
+                            if (this.tetrisGrid[x][y] == true) {
+
+                                this.tetrisGrid[x][y - 1] = true;
+                                this.tetrisGrid[x][y] = false;
+
+                            }
+
+                        }
+
+                    }
+
+                    /*
+
+                    //update rowCounts
+                    for (int k = i + 1; k < this.height; k++){
+
+                        this.rowCounts[k - 1] = this.rowCounts[k];
+
+                    }
+                    this.rowCounts[this.height - 1] = 0;
+
+                    //update colCounts
+                    for (int k = 0; k < this.width; k++){
+
+                        for (int h = this.height - 1; h >= 0; h--){
+
+                            if (this.tetrisGrid[k][h] = true){
+
+                                this.colCounts[k] = h + 1;
+                                break;
+
+                            }
+
+                        }
+
+                    }
+                     */
+                    makeHeightAndWidthArrays();
+
+                    //update clear count
+                    clearRowCount++;
+
+                    //break the loop
+                    break;
+
                 }
-            }
-            if (count == width) {
-                fullrows.add(y);
+                if (i == this.height - 1) {
+                    out = 1;
+                }
 
             }
-        }
-        //System.out.println(fullrows);
-        int movedownrow = 0;
-        for (int y = 0; y < height; y++) {
-            //System.out.println(fullrows.contains(y+1));
-            if (fullrows.contains(y+movedownrow)) {
-                movedownrow++;
-            }
-            for (int x = 0; x < width; x++) {
-                if (y + movedownrow >= height) {
-                    tetrisGrid[x][y] = false;
-                } else {
-                    tetrisGrid[x][y] = tetrisGrid[x][y + movedownrow];
-                }
-                makeHeightAndWidthArrays();
+            if (out == 1) {
+                break;
             }
 
-            }
-        if (fullrows.size() == 4){
-            Achievement a = Achievement.getInstance();
-            a.unlock("wait strip");
         }
-        return fullrows.size();
+
+        return clearRowCount;
+
+
     }
 
 

@@ -8,8 +8,8 @@ import java.util.Random;
  */
 public class TetrisModel implements Serializable {
 
-    public static final int WIDTH = 10; //size of the board in blocks
-    public static final int HEIGHT = 20; //height of the board in blocks
+    public static final int WIDTH = 10; //size of the board in blocks 10
+    public static final int HEIGHT = 20; //height of the board in blocks 20
     public static final int BUFFERZONE = 4; //space at the top
 
     private Boolean never10 = true;
