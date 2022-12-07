@@ -8,7 +8,7 @@ import java.util.*;
  *
  * Based on the Tetris assignment in the Nifty Assignments Database, authored by Nick Parlante
  */
-public class TetrisPiece implements Serializable, Piece {
+public class TetrisPiece implements Serializable, Piece{
 
     /*
      Implementation notes:
@@ -17,12 +17,14 @@ public class TetrisPiece implements Serializable, Piece {
      -The attributes in the TetrisPoint class are x and y coordinates
      -Don't assume there are 4 points in the piece body; there might be less or more!
     */
-    private TetrisPoint[] body; // y and x values that make up the body of the piece.
+    public TetrisPoint[] body; // y and x values that make up the body of the piece.
+
+    public String colour;
     private int[] lowestYVals; //The lowestYVals array contains the lowest y value for each x in the body.
     private int width;
     private int height;
-    private TetrisPiece next; // We'll use this to link each piece to its "next" rotation.
-    static private TetrisPiece[] pieces;	// array of rotations for this piece
+    public TetrisPiece next; // We'll use this to link each piece to its "next" rotation.
+    static public TetrisPiece[] pieces;	// array of rotations for this piece
 
 
     // String constants for the standard 7 tetris pieces
@@ -173,7 +175,7 @@ public class TetrisPiece implements Serializable, Piece {
      *
      * @return a list of all the rotations for all the given pieces.
      */
-    public static TetrisPiece[] getPieces() {
+    public static Piece[] getPieces() {
         // lazy evaluation -- create static array only if needed
         if (TetrisPiece.pieces==null) {
             // use makeFastRotations() to compute all the rotations for each piece
@@ -313,4 +315,8 @@ public class TetrisPiece implements Serializable, Piece {
         return array;
     }
 
+    @Override
+    public void action() {
+        return;
+    }
 }

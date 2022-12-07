@@ -12,5 +12,5 @@ public interface TetrisPilot {
      * @param currentY
      * @return The best move, based on search for good moves
      */
-    public TetrisModel.MoveType bestMove(TetrisBoard board, TetrisPiece piece, int limitHeight, int currentY);
+    public TetrisModel.MoveType bestMove(TetrisBoard board, Piece piece, int limitHeight, int currentY);
 }

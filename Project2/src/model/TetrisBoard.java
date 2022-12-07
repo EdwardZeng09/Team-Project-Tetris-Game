@@ -33,6 +33,7 @@ public class TetrisBoard implements Serializable{
     public static final int ADD_OUT_BOUNDS = 2;
     public static final int ADD_BAD = 3;
 
+
     /**
      * Constructor for an empty board of the given width and height measured in blocks.
      *
@@ -140,7 +141,7 @@ public class TetrisBoard implements Serializable{
      *
      * @return the y value where the piece will come to rest
      */
-    public int placementHeight(TetrisPiece piece, int x) {
+    public int placementHeight(Piece piece, int x) {
         int[] lowesty = piece.getLowestYVals();
         ArrayList<Integer> arr = new ArrayList<>();
         for(int i = 0; i < lowesty.length; i++){
@@ -152,7 +153,6 @@ public class TetrisBoard implements Serializable{
         int blank = max[0] - arr.get(0);
         HashMap<Integer, Integer> pieceheight = heightofpice(piece);
         return colCounts[x] + blank;
-
     }
 
 
@@ -180,7 +180,7 @@ public class TetrisBoard implements Serializable{
      * @param tp TetrisPiece
      * @return a HashMap<Integer, Integer> contains the height of each col.
      */
-    public HashMap<Integer, Integer> heightofpice(TetrisPiece tp){
+    public HashMap<Integer, Integer> heightofpice(Piece tp){
         HashMap<ArrayList<Integer>, Integer> maxminmap = new HashMap<>();
         HashMap<Integer, Integer> colheight = new HashMap<>();
         for(TetrisPoint tpo: tp.getBody()){
@@ -234,7 +234,7 @@ public class TetrisBoard implements Serializable{
      * 
      * @return static int that defines result of placement
      */
-    public int placePiece(TetrisPiece piece, int x, int y) {
+    public int placePiece(Piece piece, int x, int y) {
         committed = false;
         backupGrid();
         if(x < 0 || x+piece.getWidth() > width || y < 0 || y+piece.getHeight() > height){
@@ -337,7 +337,7 @@ public class TetrisBoard implements Serializable{
     /**
      * Copy the backup grid into the grid that defines the board (to support undo)
      */
-    private void backupGrid() {
+    public void backupGrid() {
         //make a copy!!
         for (int i = 0; i < tetrisGrid.length; i++) {
             System.arraycopy(tetrisGrid[i], 0, backupGrid[i], 0, tetrisGrid[i].length);
@@ -357,7 +357,7 @@ public class TetrisBoard implements Serializable{
     /**
      * Fills heightsOfCols[] and widthOfRows[].  Useful helper to support clearing rows and placing pieces.
      */
-    private void makeHeightAndWidthArrays() {
+    public void makeHeightAndWidthArrays() {
 
         Arrays.fill(colCounts, 0);
         Arrays.fill(rowCounts, 0);
