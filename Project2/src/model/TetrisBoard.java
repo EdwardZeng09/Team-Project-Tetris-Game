@@ -33,7 +33,6 @@ public class TetrisBoard implements Serializable{
     public static final int ADD_OUT_BOUNDS = 2;
     public static final int ADD_BAD = 3;
 
-
     /**
      * Constructor for an empty board of the given width and height measured in blocks.
      *
@@ -153,6 +152,7 @@ public class TetrisBoard implements Serializable{
         int blank = max[0] - arr.get(0);
         HashMap<Integer, Integer> pieceheight = heightofpice(piece);
         return colCounts[x] + blank;
+
     }
 
 
@@ -307,6 +307,10 @@ public class TetrisBoard implements Serializable{
             }
 
             }
+        if (fullrows.size() == 4){
+            Achievement a = Achievement.getInstance();
+            a.unlock("wait strip");
+        }
         return fullrows.size();
     }
 
@@ -337,7 +341,7 @@ public class TetrisBoard implements Serializable{
     /**
      * Copy the backup grid into the grid that defines the board (to support undo)
      */
-    public void backupGrid() {
+    private void backupGrid() {
         //make a copy!!
         for (int i = 0; i < tetrisGrid.length; i++) {
             System.arraycopy(tetrisGrid[i], 0, backupGrid[i], 0, tetrisGrid[i].length);
@@ -357,7 +361,7 @@ public class TetrisBoard implements Serializable{
     /**
      * Fills heightsOfCols[] and widthOfRows[].  Useful helper to support clearing rows and placing pieces.
      */
-    public void makeHeightAndWidthArrays() {
+    private void makeHeightAndWidthArrays() {
 
         Arrays.fill(colCounts, 0);
         Arrays.fill(rowCounts, 0);
@@ -393,5 +397,4 @@ public class TetrisBoard implements Serializable{
 
 
 }
-
 

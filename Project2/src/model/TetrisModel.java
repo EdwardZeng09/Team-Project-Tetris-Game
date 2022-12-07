@@ -1,6 +1,7 @@
 package model;
 
 import java.io.*;
+import java.util.Random;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -14,9 +15,13 @@ public class TetrisModel implements Serializable {
     public static final int HEIGHT = 20; //height of the board in blocks
     public static final int BUFFERZONE = 4; //space at the top
 
+    private Boolean never10 = true;
+    private Boolean never100 = true;
+    private Boolean never1000 = true;
+
     protected TetrisBoard board;  // Board data structure
     protected Piece[] pieces; // Pieces to be places on the board
-    public Piece currentPiece; //Piece we are currently placing
+    protected Piece currentPiece; //Piece we are currently placing
     protected Piece newPiece; //next piece to be placed
     protected int count;		 // how many pieces played so far
     protected int score; //the player's score
@@ -30,8 +35,6 @@ public class TetrisModel implements Serializable {
 
     private boolean autoPilotMode; //are we in autopilot mode?
     protected TetrisPilot pilot;
-
-    public String piececolour;
 
     public enum MoveType {
         ROTATE,
@@ -133,12 +136,29 @@ public class TetrisModel implements Serializable {
     public void addNewPiece() {
         count++;
         score++;
+        if(score >= 10 && never10){
+            never10 = false;
+            Achievement a = Achievement.getInstance();
+            a.unlock("ten points");
+        }
+
+        if(score >= 100 && never100){
+            never100 = false;
+            Achievement a = Achievement.getInstance();
+            a.unlock("hundred points");
+        }
+
+        if(score >= 1000 && never1000){
+            never1000 = false;
+            Achievement a = Achievement.getInstance();
+            a.unlock("thousand points");
+        }
 
         // commit things the way they are
         board.commit();
         currentPiece = null;
 
-        Piece piece = pickNextPiece();
+        TetrisPiece piece = pickNextPiece();
 
         // Center it up at the top
         int px = (board.getWidth() - piece.getWidth())/2;
@@ -321,6 +341,23 @@ public class TetrisModel implements Serializable {
                     case 4: score += 40;  break;
                     default: score += 50;
                 }
+                if(score >= 10 && never10){
+                    never10 = false;
+                    Achievement a = Achievement.getInstance();
+                    a.unlock("ten points");
+                }
+
+                if(score >= 100 && never100){
+                    never100 = false;
+                    Achievement a = Achievement.getInstance();
+                    a.unlock("hundred points");
+                }
+
+                if(score >= 1000 && never1000){
+                    never1000 = false;
+                    Achievement a = Achievement.getInstance();
+                    a.unlock("thousand points");
+                }
             }
 
             // if the board is too tall, we've lost!
@@ -367,6 +404,4 @@ public class TetrisModel implements Serializable {
         return this.autoPilotMode;
     }
 }
-
-
 

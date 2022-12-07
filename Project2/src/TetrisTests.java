@@ -1,5 +1,7 @@
+import model.Achievement;
 import model.TetrisPiece;
 import model.TetrisBoard;
+import model.Achievement;
 
 import model.TetrisPoint;
 import org.junit.jupiter.api.Test;
@@ -170,19 +172,23 @@ public class TetrisTests {
 
         //fill two rows completely
         int retval = board.placePiece(pieceA, 0,0); board.commit();
-        retval = board.placePiece(pieceB, 2,0); board.commit();
-        retval = board.placePiece(pieceA, 4,0); board.commit();
+        retval = board.placePiece(pieceA, 2,0); board.commit();
+        board.placePiece(pieceA, 4,0); board.commit();
+        board.placePiece(pieceA, 6,0); board.commit();
+        board.placePiece(pieceC, 8,0); board.commit();
+        board.placePiece(pieceA, 0,2); board.commit();
+        board.placePiece(pieceA, 2,2); board.commit();
+        board.placePiece(pieceA, 4,2); board.commit();
+        board.placePiece(pieceA, 6,2); board.commit();
+        board.placePiece(pieceC, 9,0); board.commit();
 
-        retval = board.placePiece(pieceA, 8,0); board.commit();
-        retval = board.placePiece(pieceD, 3,2); board.commit();
-        retval = board.placePiece(pieceA, 7,2); board.commit();
-        retval = board.placePiece(pieceC, 9,2); board.commit();
-        retval = board.placePiece(pieceA, 0,2);
+
         System.out.println(board);
-
+        Achievement a = Achievement.getInstance();
 
         int rcleared = board.clearRows();
-        assertEquals(1, rcleared);
+        assertEquals(4, rcleared);
+        assertEquals(true, a.getachievents().get("wait strip"));
         System.out.println(board);
     }
 

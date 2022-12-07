@@ -1,8 +1,11 @@
 package views;
 
+import model.TetrisContext;
 import model.DestroyDecorator;
 import model.TetrisBoard;
 import model.TetrisModel;
+import model.TetrisPiece;
+import model.Achievement;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,9 +25,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.TetrisPiece;
-
 import java.io.File;
+import java.util.HashMap;
+
+
 
 
 /**
@@ -41,6 +45,8 @@ public class TetrisView {
     Label scoreLabel = new Label("");
     Label gameModeLabel = new Label("");
 
+    Label AchievementLable = new Label((""));
+
     BorderPane borderPane;
     Canvas canvas;
     GraphicsContext gc; //the graphics context will be linked to the canvas
@@ -51,8 +57,8 @@ public class TetrisView {
     int pieceWidth = 20; //width of block on display
     private double width; //height and width of canvas
     private double height;
-
     private String piecec;
+    private TetrisContext context;
 
     /**
      * Constructor
@@ -61,16 +67,16 @@ public class TetrisView {
      * @param stage application stage
      */
 
-    public TetrisView(TetrisModel model, Stage stage) {
+    public TetrisView(TetrisModel model, Stage stage, TetrisContext context) {
         this.model = model;
         this.stage = stage;
-        initUI();
+        initUI(context);
     }
 
     /**
      * Initialize interface
      */
-    private void initUI() {
+    private void initUI(TetrisContext context) {
         this.paused = false;
         this.stage.setTitle("CSC207 Tetris");
         this.width = this.model.getWidth()*pieceWidth + 2;
@@ -112,7 +118,36 @@ public class TetrisView {
         scoreLabel.setFont(new Font(20));
         scoreLabel.setStyle("-fx-text-fill: #e8e6e3");
 
+
+        AchievementLable.setText("Achievements:");
+        AchievementLable.setFont(new Font(20));
+        AchievementLable.setStyle("-fx-text-fill: #e8e6e3");
+
+
+        this.context = context;
+
+
+
+
         //add buttons
+        Button oneButton = new Button("Level One");
+        oneButton.setId("Level One");
+        oneButton.setPrefSize(150, 50);
+        oneButton.setFont(new Font(12));
+        oneButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+
+        Button twoButton = new Button("Level Two");
+        twoButton.setId("Level Two");
+        twoButton.setPrefSize(150, 50);
+        twoButton.setFont(new Font(12));
+        twoButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+
+        Button threeButton = new Button("Level Three");
+        threeButton.setId("Level Three");
+        threeButton.setPrefSize(150, 50);
+        threeButton.setFont(new Font(12));
+        threeButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+
         startButton = new Button("Start");
         startButton.setId("Start");
         startButton.setPrefSize(150, 50);
@@ -143,7 +178,7 @@ public class TetrisView {
         newButton.setFont(new Font(12));
         newButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
-        HBox controls = new HBox(20, saveButton, loadButton, newButton, startButton, stopButton);
+        HBox controls = new HBox(20, saveButton, loadButton, newButton, startButton, stopButton, oneButton, twoButton, threeButton);
         controls.setPadding(new Insets(20, 20, 20, 20));
         controls.setAlignment(Pos.CENTER);
 
@@ -155,7 +190,7 @@ public class TetrisView {
         vBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.TOP_CENTER);
 
-        VBox scoreBox = new VBox(20, scoreLabel, gameModeLabel, pilotButtonHuman, pilotButtonComputer);
+        VBox scoreBox = new VBox(20, scoreLabel, gameModeLabel, pilotButtonHuman, pilotButtonComputer, AchievementLable);
         scoreBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.TOP_CENTER);
 
@@ -200,6 +235,19 @@ public class TetrisView {
         loadButton.setOnAction(e -> {
             LoadView lv = new LoadView(this);
             borderPane.requestFocus();
+        });
+
+        oneButton.setOnAction(e -> {
+            context.getState().atone();
+            timeline.setRate(0.1);
+        });
+        twoButton.setOnAction(e -> {
+            context.getState().atTwo();
+            timeline.setRate(1);
+        });
+        threeButton.setOnAction(e -> {
+            context.getState().atThree();
+            timeline.setRate(10);
         });
 
         //configure this such that you adjust the speed of the timeline to a value that
@@ -277,6 +325,7 @@ public class TetrisView {
             paintBoard();
             this.model.modelTick(TetrisModel.MoveType.DOWN);
             updateScore();
+            updateAchievements();
         }
     }
 
@@ -286,6 +335,20 @@ public class TetrisView {
     private void updateScore() {
         if (this.paused != true) {
             scoreLabel.setText("Score is: " + model.getScore() + "\nPieces placed:" + model.getCount());
+        }
+    }
+
+    private void updateAchievements() {
+        if (this.paused != true) {
+            StringBuilder sb = new StringBuilder();
+            HashMap<String, Boolean> acs = Achievement.getInstance().getachievents();
+            for(String ac: acs.keySet()){
+                if(acs.get(ac)){
+                    sb.append(ac);
+                    sb.append("\n");
+                }
+            }
+            AchievementLable.setText("Achievements: " + "\n" + sb);
         }
     }
 
@@ -331,7 +394,7 @@ public class TetrisView {
             int left = xPixel(x);	// the left pixel
             // draw from 0 up to the col height
             final int yHeight = this.model.getBoard().getColumnHeight(x);
-            if(this.piecec == "Red"){
+                        if(this.piecec == "Red"){
                 for (y=0; y<yHeight; y++) {
                     if (this.model.getBoard().getGrid(x, y)) {
                         gc.setFill(Color.RED);

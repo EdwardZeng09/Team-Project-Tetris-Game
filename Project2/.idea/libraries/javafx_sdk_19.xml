@@ -1,10 +1,35 @@
 <component name="libraryTable">
   <library name="javafx-sdk-19">
-    <CLASSES />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../javafx-sdk-19/lib/javafx.fxml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../javafx-sdk-19/lib/javafx.base.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../javafx-sdk-19/lib/javafx-swt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../javafx-sdk-19/lib/javafx.controls.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../javafx-sdk-19/lib/javafx.media.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../javafx-sdk-19/lib/javafx.swing.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../javafx-sdk-19/lib/javafx.web.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../javafx-sdk-19/lib/javafx.graphics.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../.." />
+    </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/../../../../javafx-sdk-19" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/src" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Assignment1" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Assignment2" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab01" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab02" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab03" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab04" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab05" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab06" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab07" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab08" />
+      <root url="file://$PROJECT_DIR$/../../heruiqi2/Lab10" />
+      <root url="file://$PROJECT_DIR$/../../思睿4/src" />
     </SOURCES>
-    <jarDirectory url="file://$PROJECT_DIR$/../../../../javafx-sdk-19" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/../.." recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../.." recursive="false" type="SOURCES" />
   </library>
 </component>
