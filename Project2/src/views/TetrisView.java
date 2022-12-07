@@ -1,3 +1,4 @@
+
 package views;
 
 import model.TetrisContext;
@@ -59,6 +60,16 @@ public class TetrisView {
     private double height;
     private String piecec;
     private TetrisContext context;
+    
+    public int textSize = 20;
+
+    public int bottonSize = 12;
+
+    public Color viewColor1 = Color.GREEN;
+
+    public Color viewColor2 = Color.RED;
+
+    public Color viewColor3 = Color.BLACK;
 
     /**
      * Constructor
@@ -67,9 +78,34 @@ public class TetrisView {
      * @param stage application stage
      */
 
-    public TetrisView(TetrisModel model, Stage stage, TetrisContext context) {
+    public TetrisView(TetrisModel model, Stage stage, TetrisContext context, Director d) {
         this.model = model;
         this.stage = stage;
+        
+        if( d.b1.direction()== 0 ){
+
+            changePieceSize(35);
+
+            changeTextSize(30);
+
+            changeBottonSize(20);
+
+        } else if (d.b1.direction()== 1) {
+
+            changeColor();
+
+        } else if (d.b1.direction()== 2) {
+
+            changePieceSize(35);
+
+            changeTextSize(30);
+
+            changeBottonSize(20);
+
+            changeColor();
+
+        }
+        
         initUI(context);
     }
 
@@ -96,7 +132,7 @@ public class TetrisView {
 
         gameModeLabel.setText("Player is: Human");
         gameModeLabel.setMinWidth(250);
-        gameModeLabel.setFont(new Font(20));
+        gameModeLabel.setFont(new Font(this.textSize));
         gameModeLabel.setStyle("-fx-text-fill: #e8e6e3");
 
         final ToggleGroup toggleGroup = new ToggleGroup();
@@ -105,77 +141,75 @@ public class TetrisView {
         pilotButtonHuman.setToggleGroup(toggleGroup);
         pilotButtonHuman.setSelected(true);
         pilotButtonHuman.setUserData(Color.SALMON);
-        pilotButtonHuman.setFont(new Font(16));
+        pilotButtonHuman.setFont(new Font(this.textSize));
         pilotButtonHuman.setStyle("-fx-text-fill: #e8e6e3");
 
         RadioButton pilotButtonComputer = new RadioButton("Computer (Default)");
         pilotButtonComputer.setToggleGroup(toggleGroup);
         pilotButtonComputer.setUserData(Color.SALMON);
-        pilotButtonComputer.setFont(new Font(16));
+        pilotButtonComputer.setFont(new Font(this.textSize));
         pilotButtonComputer.setStyle("-fx-text-fill: #e8e6e3");
 
         scoreLabel.setText("Score is: 0");
-        scoreLabel.setFont(new Font(20));
+        scoreLabel.setFont(new Font(this.textSize));
         scoreLabel.setStyle("-fx-text-fill: #e8e6e3");
 
 
         AchievementLable.setText("Achievements:");
-        AchievementLable.setFont(new Font(20));
+        AchievementLable.setFont(new Font(this.textSize));
         AchievementLable.setStyle("-fx-text-fill: #e8e6e3");
 
 
         this.context = context;
 
 
-
-
         //add buttons
         Button oneButton = new Button("Level One");
         oneButton.setId("Level One");
         oneButton.setPrefSize(150, 50);
-        oneButton.setFont(new Font(12));
+        oneButton.setFont(new Font(bottonSize));
         oneButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         Button twoButton = new Button("Level Two");
         twoButton.setId("Level Two");
         twoButton.setPrefSize(150, 50);
-        twoButton.setFont(new Font(12));
+        twoButton.setFont(new Font(bottonSize));
         twoButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         Button threeButton = new Button("Level Three");
         threeButton.setId("Level Three");
         threeButton.setPrefSize(150, 50);
-        threeButton.setFont(new Font(12));
+        threeButton.setFont(new Font(bottonSize));
         threeButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         startButton = new Button("Start");
         startButton.setId("Start");
         startButton.setPrefSize(150, 50);
-        startButton.setFont(new Font(12));
+        startButton.setFont(new Font(bottonSize));
         startButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         stopButton = new Button("Stop");
         stopButton.setId("Start");
         stopButton.setPrefSize(150, 50);
-        stopButton.setFont(new Font(12));
+        stopButton.setFont(new Font(bottonSize));
         stopButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         saveButton = new Button("Save");
         saveButton.setId("Save");
         saveButton.setPrefSize(150, 50);
-        saveButton.setFont(new Font(12));
+        saveButton.setFont(new Font(bottonSize));
         saveButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         loadButton = new Button("Load");
         loadButton.setId("Load");
         loadButton.setPrefSize(150, 50);
-        loadButton.setFont(new Font(12));
+        loadButton.setFont(new Font(bottonSize));
         loadButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         newButton = new Button("New Game");
         newButton.setId("New");
         newButton.setPrefSize(150, 50);
-        newButton.setFont(new Font(12));
+        newButton.setFont(new Font(bottonSize));
         newButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         HBox controls = new HBox(20, saveButton, loadButton, newButton, startButton, stopButton, oneButton, twoButton, threeButton);
@@ -374,12 +408,12 @@ public class TetrisView {
     public void paintBoard() {
 
         // Draw a rectangle around the whole screen
-        gc.setStroke(Color.GREEN);
-        gc.setFill(Color.GREEN);
+        gc.setStroke(viewColor1);
+        gc.setFill(viewColor1);
         gc.fillRect(0, 0, this.width-1, this.height-1);
 
         // Draw the line separating the top area on the screen
-        gc.setStroke(Color.BLACK);
+        gc.setStroke(viewColor3);
         int spacerY = yPixel(this.model.getBoard().getHeight() - this.model.BUFFERZONE - 1);
         gc.strokeLine(0, spacerY, this.width-1, spacerY);
 
@@ -397,9 +431,9 @@ public class TetrisView {
                         if(this.piecec == "Red"){
                 for (y=0; y<yHeight; y++) {
                     if (this.model.getBoard().getGrid(x, y)) {
-                        gc.setFill(Color.RED);
+                        gc.setFill(viewColor2);
                         gc.fillRect(left+1, yPixel(y)+1, dx, dy);
-                        gc.setFill(Color.GREEN);
+                        gc.setFill(viewColor1);
                     }
                 }
             }
@@ -408,16 +442,16 @@ public class TetrisView {
                     if (this.model.getBoard().getGrid(x, y)) {
                         gc.setFill(Color.YELLOW);
                         gc.fillRect(left+1, yPixel(y)+1, dx, dy);
-                        gc.setFill(Color.GREEN);
+                        gc.setFill(viewColor1);
                     }
                 }
             }
             else{
                 for (y=0; y<yHeight; y++) {
                     if (this.model.getBoard().getGrid(x, y)) {
-                        gc.setFill(Color.BLACK);
+                        gc.setFill(Color.GREY);
                         gc.fillRect(left+1, yPixel(y)+1, dx, dy);
-                        gc.setFill(Color.GREEN);
+                        gc.setFill(viewColor1);
                     }
                 }
             }
@@ -438,6 +472,31 @@ public class TetrisView {
     private void createLoadView(){
         LoadView loadView = new LoadView(this);
     }
+    
+    public void changePieceSize(int newSize){
 
+        this.pieceWidth = newSize;
+
+    }
+
+    public void changeTextSize(int newSize){
+
+        this.textSize = newSize;
+
+    }
+
+    public void changeBottonSize(int newSize){
+
+        this.bottonSize = newSize;
+
+    }
+
+    public void changeColor(){
+
+        this.viewColor1 = Color.BLACK;
+
+        this.viewColor2 = Color.WHITE;
+
+    }
 
 }
