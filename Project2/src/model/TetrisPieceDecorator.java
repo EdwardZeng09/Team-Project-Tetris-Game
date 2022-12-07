@@ -6,27 +6,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
-abstract class TetrisPieceDecorator implements Serializable, Piece{
+public abstract class TetrisPieceDecorator implements Serializable, Piece{
+    public TetrisPoint[] points;
 
-    public abstract int getWidth();
+    public static TetrisModel tm;
 
+    public TetrisPieceDecorator(TetrisPoint[] points, TetrisModel tm){
+        this.points = points;
+        this.tm = tm;
+    }
 
-    public abstract int getHeight();
-
-    public abstract TetrisPoint[] getBody();
-
-    public abstract int[] getLowestYVals();
-
-    public abstract boolean equals(Object obj);
-
-    public abstract TetrisPiece[] getPieces();
-
-    public abstract TetrisPiece fastRotation();
-
-    public abstract TetrisPiece makeFastRotations(TetrisPiece root);
-
-    public abstract TetrisPiece computeNextRotation();
-
-    public abstract String toString();
-
+    @Override
+    public void action() {
+        return;
+    }
 }

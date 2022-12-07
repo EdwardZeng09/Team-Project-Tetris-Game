@@ -1,3 +1,4 @@
+
 import model.Director;
 import model.TetrisContext;
 import model.TetrisModel;
@@ -47,4 +48,3 @@ public class TetrisApp extends Application {
     }
 
 }
-

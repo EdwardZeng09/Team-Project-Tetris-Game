@@ -1,3 +1,4 @@
+
 // TetrisBoard.java
 package model;
 
@@ -140,7 +141,7 @@ public class TetrisBoard implements Serializable{
      *
      * @return the y value where the piece will come to rest
      */
-    public int placementHeight(TetrisPiece piece, int x) {
+    public int placementHeight(Piece piece, int x) {
         int[] lowesty = piece.getLowestYVals();
         ArrayList<Integer> arr = new ArrayList<>();
         for(int i = 0; i < lowesty.length; i++){
@@ -180,7 +181,7 @@ public class TetrisBoard implements Serializable{
      * @param tp TetrisPiece
      * @return a HashMap<Integer, Integer> contains the height of each col.
      */
-    public HashMap<Integer, Integer> heightofpice(TetrisPiece tp){
+    public HashMap<Integer, Integer> heightofpice(Piece tp){
         HashMap<ArrayList<Integer>, Integer> maxminmap = new HashMap<>();
         HashMap<Integer, Integer> colheight = new HashMap<>();
         for(TetrisPoint tpo: tp.getBody()){
@@ -234,7 +235,7 @@ public class TetrisBoard implements Serializable{
      * 
      * @return static int that defines result of placement
      */
-    public int placePiece(TetrisPiece piece, int x, int y) {
+    public int placePiece(Piece piece, int x, int y) {
         committed = false;
         backupGrid();
         if(x < 0 || x+piece.getWidth() > width || y < 0 || y+piece.getHeight() > height){
@@ -357,10 +358,11 @@ public class TetrisBoard implements Serializable{
             }
 
         }
-
+        if (clearRowCount == 4){
+            Achievement a = Achievement.getInstance();
+            a.unlock("wait strip");
+        }
         return clearRowCount;
-
-
     }
 
 
@@ -400,6 +402,10 @@ public class TetrisBoard implements Serializable{
         System.arraycopy(colCounts, 0, backupColCounts, 0, colCounts.length);
     }
 
+    public void backupGrid2(){
+        backupGrid();
+    }
+
     /**
      * Puts the board in the 'committed' state.
      */
@@ -425,6 +431,10 @@ public class TetrisBoard implements Serializable{
         }
     }
 
+    public void makeHeightAndWidthArrays2(){
+        makeHeightAndWidthArrays();
+    }
+
     /**
      * Print the board
      * 
@@ -446,5 +456,4 @@ public class TetrisBoard implements Serializable{
 
 
 }
-
 

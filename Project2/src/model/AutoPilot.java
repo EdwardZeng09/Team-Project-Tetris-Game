@@ -19,7 +19,7 @@ public class AutoPilot implements TetrisPilot, Serializable {
      * @return The best move (Rotate, Left, or Right), based on an assessment of "good" moves
      */
     @Override
-    public TetrisModel.MoveType bestMove(TetrisBoard board, TetrisPiece piece, int currentX, int currentY) {
+    public TetrisModel.MoveType bestMove(TetrisBoard board, Piece piece, int currentX, int currentY) {
 
         //The current strategy is to pick a random move from among the options: Left, Right, and Rotate
         //Why not try to improve on this!
