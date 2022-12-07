@@ -7,6 +7,7 @@ import model.TetrisBoard;
 import model.TetrisModel;
 import model.TetrisPiece;
 import model.Achievement;
+import model.Director;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
 import java.util.HashMap;
+
 
 
 
