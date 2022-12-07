@@ -63,14 +63,39 @@ public class BombDecorator extends TetrisPieceDecorator{
     public void action() {
         super.action();
         for(TetrisPoint tp: body) {
-            tm.board.tetrisGrid[tp.x + tm.currentX][tp.y + tm.currentY] = false;
-            tm.board.tetrisGrid[tp.x + tm.currentX + 1][tp.y + tm.currentY] = false;
-            tm.board.tetrisGrid[tp.x + tm.currentX][tp.y + tm.currentY + 1] = false;
-            tm.board.tetrisGrid[tp.x + tm.currentX + 1][tp.y + tm.currentY + 1] = false;
-            tm.board.tetrisGrid[tp.x + tm.currentX - 1][tp.y + tm.currentY - 1] = false;
-            tm.board.tetrisGrid[tp.x + tm.currentX][tp.y + tm.currentY - 1] = false;
-            tm.board.tetrisGrid[tp.x + tm.currentX - 1][tp.y + tm.currentY] = false;
-            tm.board.makeHeightAndWidthArrays();
+            if (0 <= tp.x + tm.currentX && tp.x + tm.currentX < tm.board.getWidth()
+            && 0 <= tp.y + tm.currentY && tp.y + tm.currentY < tm.board.getHeight()){
+                tm.board.tetrisGrid[tp.x + tm.currentX][tp.y + tm.currentY] = false;
+            }
+            if (0 <= tp.x + tm.currentX + 1 && tp.x + tm.currentX + 1 < tm.board.getWidth()
+                    && 0 <= tp.y + tm.currentY && tp.y + tm.currentY < tm.board.getHeight()){
+                tm.board.tetrisGrid[tp.x + tm.currentX + 1][tp.y + tm.currentY] = false;
+            }
+            if (0 <= tp.x + tm.currentX && tp.x + tm.currentX < tm.board.getWidth()
+                    && 0 <= tp.y + tm.currentY + 1 && tp.y + tm.currentY + 1 < tm.board.getHeight()){
+                tm.board.tetrisGrid[tp.x + tm.currentX][tp.y + tm.currentY + 1] = false;
+            }
+            if (0 <= tp.x + tm.currentX + 1 && tp.x + tm.currentX + 1 < tm.board.getWidth()
+                    && 0 <= tp.y + tm.currentY + 1 && tp.y + tm.currentY + 1 < tm.board.getHeight()){
+                tm.board.tetrisGrid[tp.x + tm.currentX + 1][tp.y + tm.currentY + 1] = false;
+            }
+            if (0 <= tp.x + tm.currentX - 1 && tp.x + tm.currentX - 1 < tm.board.getWidth()
+                    && 0 <= tp.y + tm.currentY - 1 && tp.y + tm.currentY - 1 < tm.board.getHeight()){
+                tm.board.tetrisGrid[tp.x + tm.currentX - 1][tp.y + tm.currentY - 1] = false;
+            }
+            if (0 <= tp.x + tm.currentX && tp.x + tm.currentX < tm.board.getWidth()
+                    && 0 <= tp.y + tm.currentY - 1 && tp.y + tm.currentY - 1 < tm.board.getHeight()){
+                tm.board.tetrisGrid[tp.x + tm.currentX][tp.y + tm.currentY - 1] = false;
+            }
+            if (0 <= tp.x + tm.currentX - 1 && tp.x + tm.currentX - 1 < tm.board.getWidth()
+                    && 0 <= tp.y + tm.currentY && tp.y + tm.currentY < tm.board.getHeight()){
+                tm.board.tetrisGrid[tp.x + tm.currentX - 1][tp.y + tm.currentY] = false;
+            }
+            Achievement a = Achievement.getInstance();
+            a.unlock("The Bomber");
+
+
+            tm.board.makeHeightAndWidthArrays2();
         }
     }
 

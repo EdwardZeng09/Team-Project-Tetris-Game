@@ -351,6 +351,10 @@ public class TetrisBoard implements Serializable{
         System.arraycopy(colCounts, 0, backupColCounts, 0, colCounts.length);
     }
 
+    public void backupGrid2(){
+        backupGrid();
+    }
+
     /**
      * Puts the board in the 'committed' state.
      */
@@ -374,6 +378,10 @@ public class TetrisBoard implements Serializable{
                 }
             }
         }
+    }
+
+    public void makeHeightAndWidthArrays2(){
+        makeHeightAndWidthArrays();
     }
 
     /**

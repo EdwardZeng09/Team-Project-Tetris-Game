@@ -67,8 +67,10 @@ public class DestroyDecorator extends TetrisPieceDecorator{
                 }
             }
         }
-        tm.board.makeHeightAndWidthArrays();
-        tm.board.backupGrid();
+        Achievement a = Achievement.getInstance();
+        a.unlock("Freak of destruction");
+        tm.board.makeHeightAndWidthArrays2();
+        tm.board.backupGrid2();
     }
 
 

@@ -21,7 +21,7 @@ public class TetrisModel implements Serializable {
 
     protected TetrisBoard board;  // Board data structure
     protected Piece[] pieces; // Pieces to be places on the board
-    protected Piece currentPiece; //Piece we are currently placing
+    public Piece currentPiece; //Piece we are currently placing
     protected Piece newPiece; //next piece to be placed
     protected int count;		 // how many pieces played so far
     protected int score; //the player's score
@@ -158,7 +158,7 @@ public class TetrisModel implements Serializable {
         board.commit();
         currentPiece = null;
 
-        TetrisPiece piece = pickNextPiece();
+        Piece piece = pickNextPiece();
 
         // Center it up at the top
         int px = (board.getWidth() - piece.getWidth())/2;
