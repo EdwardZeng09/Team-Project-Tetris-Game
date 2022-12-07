@@ -2,6 +2,9 @@ package model;
 
 import java.io.*;
 import java.util.Random;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /** Represents a Tetris Model for Tetris.  
  * Based on the Tetris assignment in the Nifty Assignments Database, authored by Nick Parlante
@@ -17,9 +20,9 @@ public class TetrisModel implements Serializable {
     private Boolean never1000 = true;
 
     protected TetrisBoard board;  // Board data structure
-    protected TetrisPiece[] pieces; // Pieces to be places on the board
-    protected TetrisPiece currentPiece; //Piece we are currently placing
-    protected TetrisPiece newPiece; //next piece to be placed
+    protected Piece[] pieces; // Pieces to be places on the board
+    protected Piece currentPiece; //Piece we are currently placing
+    protected Piece newPiece; //next piece to be placed
     protected int count;		 // how many pieces played so far
     protected int score; //the player's score
 
@@ -46,7 +49,20 @@ public class TetrisModel implements Serializable {
      */
     public TetrisModel() {
         board = new TetrisBoard(WIDTH, HEIGHT + BUFFERZONE);
-        pieces = TetrisPiece.getPieces(); //initialize board and pieces
+        DestroyDecorator[] dp = DestroyDecorator.getPieces(this);
+        Piece[] tp = TetrisPiece.getPieces();
+        BombDecorator[] bp = BombDecorator.getPieces(this);
+        ArrayList<Piece> ap = new ArrayList<>();
+        for(DestroyDecorator p: dp){
+            ap.add(p);
+        }
+        for(Piece p1: tp){
+            ap.add(p1);
+        }
+        for(BombDecorator p2: bp){
+            ap.add(p2);
+        }
+        pieces = ap.toArray(new Piece[ap.size()]); //initialize board and pieces
         autoPilotMode = false;
         gameOn = false;
         pilot = new AutoPilot();
@@ -159,11 +175,23 @@ public class TetrisModel implements Serializable {
     /**
      * Pick next piece to put in play on board 
      */
-    private TetrisPiece pickNextPiece() {
+    private Piece pickNextPiece() {
         int pieceNum;
-        pieceNum = (int) (pieces.length * random.nextDouble());
-        TetrisPiece piece	 = pieces[pieceNum];
-        return(piece);
+        Random rand = new Random();
+        if(rand.nextInt(20) == 0) {
+            Piece piece	 = pieces[0];
+            return(piece);
+        }
+        else if(rand.nextInt(10) == 0){
+            int a = ThreadLocalRandom.current().nextInt(8, 15);
+            Piece piece	 = pieces[a];
+            return(piece);
+        }
+        else{
+            int a = ThreadLocalRandom.current().nextInt(1, 8);
+            Piece piece	 = pieces[a];
+            return(piece);
+        }
     }
 
     /**
@@ -175,7 +203,7 @@ public class TetrisModel implements Serializable {
      * 
      * @return integer defining if placement is OK or not (see Board.java)
      */
-    public int setCurrent(TetrisPiece piece, int x, int y) {
+    public int setCurrent(Piece piece, int x, int y) {
         int result = board.placePiece(piece, x, y);
 
         if (result <= TetrisBoard.ADD_ROW_FILLED) { // SUCCESS
@@ -339,6 +367,7 @@ public class TetrisModel implements Serializable {
 
             // Otherwise, add a new piece and keep playing
             else {
+                currentPiece.action();
                 addNewPiece();
             }
         }
@@ -375,6 +404,4 @@ public class TetrisModel implements Serializable {
         return this.autoPilotMode;
     }
 }
-
-
 

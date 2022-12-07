@@ -1,7 +1,10 @@
 package views;
 
 import model.TetrisContext;
+import model.DestroyDecorator;
+import model.TetrisBoard;
 import model.TetrisModel;
+import model.TetrisPiece;
 import model.Achievement;
 
 import javafx.animation.KeyFrame;
@@ -54,6 +57,7 @@ public class TetrisView {
     int pieceWidth = 20; //width of block on display
     private double width; //height and width of canvas
     private double height;
+    private String piecec;
     private TetrisContext context;
 
     /**
@@ -308,6 +312,16 @@ public class TetrisView {
      */
     private void updateBoard() {
         if (this.paused != true) {
+            TetrisPiece a = new TetrisPiece(this.model.currentPiece.getBody());
+            TetrisBoard board = new TetrisBoard(10,24);
+            DestroyDecorator b = new DestroyDecorator(this.model.currentPiece.getBody(), this.model);
+            if(this.model.currentPiece.getClass().getSimpleName() == b.getClass().getSimpleName()){
+                this.piecec = "Yellow";
+            } else if (this.model.currentPiece.getClass().getSimpleName() == a.getClass().getSimpleName()) {
+                this.piecec = "Red";
+            }else{
+                this.piecec = "Black";
+            }
             paintBoard();
             this.model.modelTick(TetrisModel.MoveType.DOWN);
             updateScore();
@@ -380,11 +394,31 @@ public class TetrisView {
             int left = xPixel(x);	// the left pixel
             // draw from 0 up to the col height
             final int yHeight = this.model.getBoard().getColumnHeight(x);
-            for (y=0; y<yHeight; y++) {
-                if (this.model.getBoard().getGrid(x, y)) {
-                    gc.setFill(Color.RED);
-                    gc.fillRect(left+1, yPixel(y)+1, dx, dy);
-                    gc.setFill(Color.GREEN);
+                        if(this.piecec == "Red"){
+                for (y=0; y<yHeight; y++) {
+                    if (this.model.getBoard().getGrid(x, y)) {
+                        gc.setFill(Color.RED);
+                        gc.fillRect(left+1, yPixel(y)+1, dx, dy);
+                        gc.setFill(Color.GREEN);
+                    }
+                }
+            }
+            else if(this.piecec == "Yellow"){
+                for (y=0; y<yHeight; y++) {
+                    if (this.model.getBoard().getGrid(x, y)) {
+                        gc.setFill(Color.YELLOW);
+                        gc.fillRect(left+1, yPixel(y)+1, dx, dy);
+                        gc.setFill(Color.GREEN);
+                    }
+                }
+            }
+            else{
+                for (y=0; y<yHeight; y++) {
+                    if (this.model.getBoard().getGrid(x, y)) {
+                        gc.setFill(Color.BLACK);
+                        gc.fillRect(left+1, yPixel(y)+1, dx, dy);
+                        gc.setFill(Color.GREEN);
+                    }
                 }
             }
         }
